@@ -5,6 +5,7 @@ using UnityEngine;
 public class StampController : DragDrop
 {
     private bool stamped;
+    private int index;
     private BoxCollider2D col;
 
     void Start()
@@ -29,6 +30,10 @@ public class StampController : DragDrop
         else transform.parent.GetComponent<PostcardController>().OnMouseUp();
     }
 
+    public void SetIndex(int i) {
+        index = i;
+    }
+
     protected override bool OnDrop() {
         Collider2D other = Physics2D.OverlapBox(transform.position, Vector2.Scale(col.size, transform.localScale), 0, LayerMask.GetMask("Postcards"));
         if(other == null) return false;
@@ -36,6 +41,7 @@ public class StampController : DragDrop
         Debug.Log("Stamped!");
         stamped = true;
         SetDragEnabled(false);
+        LevelManager.GetInstance().GetSheetController().UntrackStamp(index);
         transform.parent = other.transform;
         return true;
     }
