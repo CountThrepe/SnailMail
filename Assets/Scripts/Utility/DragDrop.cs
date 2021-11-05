@@ -5,6 +5,7 @@ public abstract class DragDrop : MonoBehaviour
     private bool dragable, dragging;
     private Vector2 originalPos;
     private Bounds cameraBounds;
+    protected int index;
 
     void Awake() {
         dragable = true;
@@ -47,6 +48,10 @@ public abstract class DragDrop : MonoBehaviour
             dragging = false;
             if(!OnDrop()) transform.position = originalPos;
         }
+    }
+
+    public void SetIndex(int i) {
+        index = i;
     }
 
     protected abstract bool OnDrop();

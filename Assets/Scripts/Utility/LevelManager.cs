@@ -5,6 +5,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     public StampSheetController sheet;
+    public PostcardDeckController postcardDeck;
     private static LevelManager self = null;
 
     void Awake() {
@@ -17,5 +18,9 @@ public class LevelManager : MonoBehaviour
 
     public StampSheetController GetSheetController() {
         return sheet;
+    }
+
+    public PostcardDeckController GetPostcardDeck() {
+        return postcardDeck;
     }
 }
